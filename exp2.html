@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELECTRO MART | Online Store</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 60px;
+    background:#111;
+    color:#fff;
+    top:0;
+}
+
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 15px;
+}
+
+.nav-links a:hover{
+    color:#00bcd4;
+}
+
+/* HERO */
+.hero{
+    background:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') center/cover no-repeat;
+    height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+}
+
+.hero h1{ font-size:48px; }
+.hero p{ margin-top:10px; font-size:18px; }
+.hero button{
+    margin-top:20px;
+    padding:12px 25px;
+    background:#00bcd4;
+    border:none;
+    color:#fff;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* NEW SECTION 1 - FEATURES */
+.features{
+    padding:60px;
+    text-align:center;
+    background:#fff;
+}
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    margin-top:40px;
+}
+.feature-box{
+    background:#f1f5f9;
+    padding:25px;
+    border-radius:10px;
+    transition:0.3s;
+}
+.feature-box:hover{
+    background:#00bcd4;
+    color:#fff;
+    transform:translateY(-5px);
+}
+
+/* PRODUCTS */
+.products{
+    padding:60px;
+    text-align:center;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    margin-top:40px;
+}
+
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.card h3{ margin:10px 0; }
+.card p{ font-weight:bold; margin-bottom:10px; }
+
+.card button{
+    padding:8px 12px;
+    margin:5px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.cart-btn{ background:#ff9800; color:#fff; }
+.order-btn{ background:#111; color:#fff; }
+
+/* NEW SECTION 2 - TESTIMONIALS */
+.testimonials{
+    padding:60px;
+    background:#fff;
+    text-align:center;
+}
+.testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    margin-top:40px;
+}
+.testimonial{
+    background:#f1f5f9;
+    padding:20px;
+    border-radius:10px;
+}
+
+/* FOOTER (Compact Professional) */
+footer{
+    background:#111;
+    color:#fff;
+    padding:40px 60px;
+    font-size:14px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+}
+
+footer h3, footer h4{
+    margin-bottom:10px;
+}
+
+footer a{
+    color:#bbb;
+    text-decoration:none;
+    display:block;
+    margin:4px 0;
+}
+
+footer a:hover{
+    color:#00bcd4;
+}
+
+footer p{
+    margin:4px 0;
+}
+
+/* POPUP */
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.popup-box{
+    background:#fff;
+    padding:30px;
+    width:350px;
+    border-radius:10px;
+    position:relative;
+    animation:fadeIn 0.3s ease;
+}
+
+.popup-box input,
+.popup-box select{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+}
+
+.popup-box button{
+    width:100%;
+    padding:10px;
+    background:#00bcd4;
+    border:none;
+    color:#fff;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.close-btn{
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* SUCCESS */
+.success{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:green;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:5px;
+    display:none;
+    z-index:2000;
+}
+
+@keyframes fadeIn{
+    from{transform:scale(0.8);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+/* ============================= */
+/* MOBILE RESPONSIVE DESIGN */
+/* ============================= */
+
+@media (max-width: 992px) {
+
+    /* Reduce padding everywhere */
+    .products,
+    .features,
+    .testimonials,
+    footer {
+        padding: 40px 20px;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+    }
+
+    .nav-links a {
+        margin: 0 10px 0 0;
+    }
+
+    /* Hero Fix */
+    .hero {
+        height: 60vh;
+        padding: 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    /* Feature grid → 2 columns */
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Product grid → 2 columns */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Testimonial grid → 1 column */
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer grid → 2 columns */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Popup width adjust */
+    .popup-box {
+        width: 90%;
+    }
+}
+
+
+/* Extra Small Devices */
+@media (max-width: 576px) {
+
+    .feature-grid,
+    .product-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        height: auto;
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .card img {
+        height: 150px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>🛍️ ELECTRO MART</h2>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>Best Electronics Deals</h1>
+        <p>Upgrade Your Lifestyle with Latest Gadgets</p>
+        <button onclick="document.getElementById('products').scrollIntoView()">Shop Now</button>
+    </div>
+</section>
+
+<!-- NEW SECTION 1 -->
+<section class="features">
+<h2>Why Choose ELECTRO MART?</h2>
+<div class="feature-grid">
+<div class="feature-box">🚚 Free Delivery</div>
+<div class="feature-box">💳 Secure Payment</div>
+<div class="feature-box">🔄 Easy Returns</div>
+<div class="feature-box">⭐ Premium Quality</div>
+</div>
+</section>
+
+<!-- PRODUCTS -->
+<!-- (Your original products section remains EXACTLY SAME) -->
+
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+<h2>Our Products</h2>
+
+<div class="product-grid">
+
+<!-- 8 PRODUCTS -->
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+<h3>Smartphone</h3>
+<p>₹15,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+<h3>Laptop</h3>
+<p>₹45,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://mobistorm.in/cache/large/product/1979/Giq03hYnxgiXorHdcFJJ0qWSNmlEUY69V2SEueIA.jpg">
+<h3>Headphones</h3>
+<p>₹2,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://hammeronline.in/cdn/shop/files/Hammerglidebluetoothcallingsmartwatch_1.webp?v=1694851875">
+<h3>Smart Watch</h3>
+<p>₹5,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://i.rtings.com/assets/pages/h1C9R3DA/best-bluetooth-speakers-for-bass-20260109-medium.jpg?format=auto">
+<h3>Bluetooth Speaker</h3>
+<p>₹3,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://www.adorama.com/alc/wp-content/uploads/2021/04/photography-camera-types-feature.jpg">
+<h3>Camera</h3>
+<p>₹25,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19">
+<h3>Crispy Fried Chicken</h3>
+<p>₹249</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97">
+<h3>Tablet</h3>
+<p>₹20,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+</div>
+</section>
+
+<!-- NEW SECTION 2 -->
+<section class="testimonials">
+<h2>What Our Customers Say</h2>
+<div class="testimonial-grid">
+<div class="testimonial">"Amazing service and quality!" - Rahul</div>
+<div class="testimonial">"Fast delivery and secure payment." - Priya</div>
+<div class="testimonial">"Best electronics store online!" - Arjun</div>
+</div>
+</section>
+
+
+<!-- FOOTER -->
+<!-- PROFESSIONAL FOOTER -->
+<footer id="contact">
+
+<div class="footer-grid">
+
+<!-- ABOUT -->
+<div>
+<h3>ELECTRO MART</h3>
+<p>Your trusted electronics shopping destination providing
+quality gadgets at affordable prices.</p>
+<p>India's Fast Growing Online Store.</p>
+</div>
+
+<!-- CUSTOMER SERVICE -->
+<div>
+<h4>Customer Service</h4>
+<a href="#">My Account</a><br>
+<a href="#">Track Order</a><br>
+<a href="#">Wishlist</a><br>
+<a href="#">Help Center</a><br>
+<a href="#">Returns</a>
+</div>
+
+<!-- POLICIES -->
+<div>
+<h4>Policies</h4>
+<a href="#">Privacy Policy</a><br>
+<a href="#">Terms & Conditions</a><br>
+<a href="#">Shipping Policy</a><br>
+<a href="#">Refund Policy</a>
+</div>
+
+<!-- CONTACT -->
+<div>
+<h4>Contact Us</h4>
+<p>Email: support@electromart.com</p>
+<p>Phone: +91 9876543210</p>
+<p>Address: Yelahanka, Bangalore, India</p>
+
+<h4 style="margin-top:15px;">Follow Us</h4>
+<p>Facebook | Instagram | Twitter | YouTube</p>
+</div>
+
+</div>
+
+<!-- NEWSLETTER -->
+<div style="margin-top:10px; text-align:center;">
+<h4>Subscribe to Our Newsletter</h4>
+<input type="email" placeholder="Enter your email"
+style="padding:10px; width:250px; margin-top:10px;">
+<button style="padding:10px 20px; background:#00bcd4; border:none; color:#fff; border-radius:5px;">
+Subscribe
+</button>
+</div>
+
+<!-- PAYMENT METHODS -->
+<div style="text-align:center; margin-top:30px;">
+<p>We Accept: Visa | MasterCard | UPI | Paytm | Google Pay</p>
+</div>
+
+<hr style="margin:30px 0; border:0.5px solid #444;">
+
+<p style="text-align:center;">
+© 2025 ELECTRO MART | All Rights Reserved | Designed by Navya Royal
+</p>
+
+</footer>
+
+
+<!-- ORDER POPUP -->
+<div class="popup" id="orderPopup">
+<div class="popup-box">
+<span class="close-btn" onclick="closePopup()">&times;</span>
+<h2>Place Your Order</h2>
+
+<form onsubmit="submitOrder(event)">
+<input type="text" placeholder="Full Name" required>
+<input type="tel" placeholder="Mobile Number" required>
+
+<select required>
+<option value="">Select Product</option>
+<option>Smartphone</option>
+<option>Laptop</option>
+<option>Headphones</option>
+<option>Smart Watch</option>
+<option>Bluetooth Speaker</option>
+<option>Camera</option>
+<option>Gaming Mouse</option>
+<option>Tablet</option>
+</select>
+
+<input type="number" placeholder="Quantity" min="1" required>
+
+<button type="submit">Place Order</button>
+</form>
+
+</div>
+</div>
+
+<!-- SUCCESS MESSAGE -->
+<div class="success" id="successMsg">
+✅ Order Placed Successfully!
+</div>
+
+<script>
+function openPopup(){
+    document.getElementById("orderPopup").style.display="flex";
+}
+
+function closePopup(){
+    document.getElementById("orderPopup").style.display="none";
+}
+
+function submitOrder(e){
+    e.preventDefault();
+    closePopup();
+
+    let success=document.getElementById("successMsg");
+    success.style.display="block";
+
+    setTimeout(()=>{
+        success.style.display="none";
+    },3000);
+}
+
+function addToCart(){
+    let success=document.getElementById("successMsg");
+    success.innerHTML="🛒 Product Added to Cart!";
+    success.style.display="block";
+
+    setTimeout(()=>{
+        success.style.display="none";
+        success.innerHTML="✅ Order Placed Successfully!";
+    },3000);
+}
+</script>
+
+</body>
+</html>

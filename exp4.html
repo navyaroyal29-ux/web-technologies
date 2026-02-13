@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EliteShop | Premium Store</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+/* NAVBAR */
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 60px;
+z-index:1000;
+}
+
+.navbar h2{
+color:#38bdf8;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:25px;
+}
+
+.cart-count{
+background:red;
+padding:2px 7px;
+border-radius:50%;
+font-size:12px;
+margin-left:5px;
+}
+
+/* HERO SLIDER */
+.hero{
+margin-top:70px;
+height:80vh;
+position:relative;
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+transition:1s;
+background-size:cover;
+background-position:center;
+}
+
+.slide h1{
+font-size:45px;
+background:rgba(0,0,0,0.5);
+padding:20px;
+border-radius:10px;
+}
+
+/* CATEGORY SLIDER */
+.category-slider{
+background:white;
+padding:60px;
+overflow:hidden;
+}
+
+.slider-track{
+display:flex;
+width:200%;
+animation:slide 15s linear infinite;
+}
+
+.category{
+min-width:25%;
+text-align:center;
+font-size:22px;
+padding:40px;
+background:#e0f2fe;
+margin:10px;
+border-radius:10px;
+}
+
+@keyframes slide{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* PRODUCTS */
+.products{
+padding:70px 60px;
+text-align:center;
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin:10px 0;
+}
+
+.card p{
+color:#3b82f6;
+font-weight:bold;
+}
+
+.card button{
+margin-top:8px;
+padding:8px 12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.cart-btn{
+background:#10b981;
+color:white;
+}
+
+.order-btn{
+background:#3b82f6;
+color:white;
+}
+
+/* REVIEWS */
+.reviews{
+background:#fff;
+padding:60px;
+text-align:center;
+}
+
+.review-box{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:30px;
+}
+
+.review{
+background:#f1f5f9;
+padding:20px;
+border-radius:10px;
+}
+
+/* FOOTER */
+footer{
+background:#0f172a;
+color:white;
+padding:25px;
+text-align:center;
+}
+
+/* POPUP */
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:white;
+padding:30px;
+width:300px;
+border-radius:10px;
+}
+
+.popup-box input{
+width:100%;
+padding:8px;
+margin:8px 0;
+}
+
+.success{
+position:fixed;
+top:20px;
+right:20px;
+background:green;
+color:white;
+padding:12px 20px;
+border-radius:6px;
+display:none;
+}
+
+.category-slider{
+    background:#ffffff;
+    padding:70px 0;
+    text-align:center;
+    overflow:hidden;
+}
+
+.section-title{
+    font-size:32px;
+    margin-bottom:40px;
+    color:#0f172a;
+}
+
+.slider-container{
+    width:100%;
+    overflow:hidden;
+}
+
+.slider-track{
+    display:flex;
+    width:max-content;
+    animation:scroll 20s linear infinite;
+}
+
+.category-card{
+    min-width:220px;
+    margin:0 15px;
+    background:#f1f5f9;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.category-card:hover{
+    transform:translateY(-8px);
+}
+
+.category-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+.category-card p{
+    padding:12px;
+    font-weight:600;
+    color:#0f172a;
+}
+
+@keyframes scroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+}
+
+
+/* ============================= */
+/* RESPONSIVE DESIGN */
+/* ============================= */
+
+/* TABLET VIEW */
+@media (max-width: 992px){
+
+    .navbar{
+        padding:15px 20px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .nav-links{
+        margin-top:10px;
+    }
+
+    .nav-links a{
+        margin:0 15px 0 0;
+    }
+
+    .hero{
+        height:60vh;
+    }
+
+    .slide h1{
+        font-size:30px;
+    }
+
+    .category-slider{
+        padding:40px 20px;
+    }
+
+    .products{
+        padding:50px 20px;
+    }
+
+    .product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .review-box{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .popup-box{
+        width:90%;
+    }
+}
+
+
+/* MOBILE VIEW */
+@media (max-width: 576px){
+
+    .navbar{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .hero{
+        height:50vh;
+    }
+
+    .slide h1{
+        font-size:22px;
+        padding:12px;
+    }
+
+    .section-title{
+        font-size:24px;
+    }
+
+    .category-card{
+        min-width:160px;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .review-box{
+        grid-template-columns:1fr;
+    }
+
+    .card img{
+        height:140px;
+    }
+
+    footer{
+        font-size:14px;
+        padding:20px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<h2>EliteShop</h2>
+<div class="nav-links">
+<a href="#">Home</a>
+<a href="#products">Products</a>
+<a href="#">Contact</a>
+<a href="#">Cart 🛒 <span class="cart-count" id="cartCount">0</span></a>
+</div>
+</div>
+
+<!-- HERO SLIDER -->
+<div class="hero">
+<div class="slide" style="background-image:url(https://i.pinimg.com/736x/50/5d/9a/505d9a1bf38c0af09f7b9ba9b7b716ef.jpg);">
+<!-- <h1>Fashion Sale 50% OFF</h1> -->
+</div>
+<div class="slide" style="background-image:url('https://cdn.prod.website-files.com/605826c62e8de87de744596e/676384c5f1eae7a1e79ae8d3_67637f0be47077919bae0b79_screenshot-2024-12-18-at-72302-pm-6762d481479f6.webp');">
+<!-- <h1>Latest Electronics Collection</h1> -->
+</div>
+<div class="slide" style="background-image:url('https://cdn.prod.website-files.com/605826c62e8de87de744596e/676384c5f1eae7a1e79ae89a_676380aa66b1834956526367_screenshot-2024-12-18-at-72454-pm-6762d4958f5b6.webp');">
+<!-- <h1>Trendy Shirts & Pants</h1> -->
+</div>
+</div>
+
+<!-- CATEGORY IMAGE SLIDER -->
+<section class="category-slider">
+    <h2 class="section-title">Shop By Categories</h2>
+
+    <div class="slider-container">
+        <div class="slider-track">
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475">
+                <p>Shirts</p>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea">
+                <p>Pants</p>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+                <p>Electronics</p>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1585386959984-a41552262b68">
+                <p>Watches</p>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+                <p>Laptops</p>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f">
+                <p>Headphones</p>
+            </div>
+
+            <!-- Duplicate for smooth loop -->
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475">
+                <p>Shirts</p>
+            </div>
+
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea">
+                <p>Pants</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+<h2>Featured Products</h2>
+
+<div class="product-grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
+<h3>Men Shirt</h3>
+<p>₹999</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+<h3>Women Dress</h3>
+<p>₹1,499</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+<h3>Laptop</h3>
+<p>₹45,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+<h3>Smartphone</h3>
+<p>₹15,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585386959984-a41552262b68">
+<h3>Smart Watch</h3>
+<p>₹5,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f">
+<h3>Headphones</h3>
+<p>₹2,000</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475">
+<h3>Casual Pants</h3>
+<p>₹1,200</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9">
+<h3>Sports Shoes</h3>
+<p>₹2,500</p>
+<button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+<button class="order-btn" onclick="openPopup()">Order</button>
+</div>
+
+</div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+<h2>Customer Reviews</h2>
+<div class="review-box">
+<div class="review">⭐⭐⭐⭐⭐ <br> Excellent quality and fast delivery!</div>
+<div class="review">⭐⭐⭐⭐ <br> Very professional website and support.</div>
+<div class="review">⭐⭐⭐⭐⭐ <br> Best online shopping experience.</div>
+</div>
+</section>
+
+<footer>
+<p>Email: support@eliteshop.com | Phone: 9876543210</p>
+<p>© 2026 EliteShop | All Rights Reserved</p>
+</footer>
+
+<!-- ORDER POPUP -->
+<div class="popup" id="popup">
+<div class="popup-box">
+<h3>Place Order</h3>
+<input type="text" placeholder="Your Name">
+<input type="text" placeholder="Address">
+<input type="number" placeholder="Quantity">
+<button onclick="placeOrder()">Confirm Order</button>
+</div>
+</div>
+
+<div class="success" id="successMsg">
+✅ Order Placed Successfully!
+</div>
+
+<script>
+
+/* HERO AUTO SLIDER */
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+function showSlide(){
+slides.forEach((slide,i)=>{
+slide.style.opacity=(i===index)?1:0;
+});
+index=(index+1)%slides.length;
+}
+setInterval(showSlide,3000);
+showSlide();
+
+/* CART */
+let count=0;
+function addToCart(){
+count++;
+document.getElementById("cartCount").innerText=count;
+}
+
+/* POPUP */
+function openPopup(){
+document.getElementById("popup").style.display="flex";
+}
+
+function placeOrder(){
+document.getElementById("popup").style.display="none";
+let s=document.getElementById("successMsg");
+s.style.display="block";
+setTimeout(()=>{s.style.display="none";},3000);
+}
+
+</script>
+
+</body>
+</html>
