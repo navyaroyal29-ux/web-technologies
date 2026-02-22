@@ -14,7 +14,8 @@ font-family:'Segoe UI',sans-serif;
 }
 
 body{
-background:#f4f6f9;
+background: linear-gradient(120deg, #667eea, #764ba2);
+background-attachment: fixed;
 }
 
 /* NAVBAR */
@@ -193,7 +194,10 @@ padding:25px;
 text-align:center;
 }
 
-/* POPUP */
+/* ============================= */
+/* MODERN POPUP DESIGN */
+/* ============================= */
+
 .popup{
 display:none;
 position:fixed;
@@ -202,32 +206,121 @@ left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.6);
+backdrop-filter:blur(5px);
 justify-content:center;
 align-items:center;
+z-index:2000;
+animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 .popup-box{
-background:white;
-padding:30px;
-width:300px;
-border-radius:10px;
+background:linear-gradient(135deg,#3b82f6,#6366f1);
+padding:35px;
+width:350px;
+border-radius:20px;
+color:white;
+box-shadow:0 15px 40px rgba(0,0,0,0.3);
+position:relative;
+animation:popupScale 0.3s ease;
+}
+
+@keyframes popupScale{
+from{transform:scale(0.8);}
+to{transform:scale(1);}
+}
+
+.popup-box h3{
+text-align:center;
+margin-bottom:20px;
+font-size:22px;
 }
 
 .popup-box input{
 width:100%;
-padding:8px;
-margin:8px 0;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+outline:none;
+font-size:14px;
+}
+
+.popup-box input:focus{
+box-shadow:0 0 8px rgba(255,255,255,0.8);
+}
+
+.popup-box button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:8px;
+background:#10b981;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+.popup-box button:hover{
+background:#059669;
+transform:scale(1.05);
+}
+
+/* Close Button */
+/* .popup-box::after{
+content:"✖";
+position:absolute;
+top:15px;
+right:20px;
+font-size:16px;
+cursor:pointer;
+} */
+
+.close-btn{
+position:absolute;
+top:15px;
+right:20px;
+font-size:18px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+
+.close-btn:hover{
+transform:scale(1.2);
+color:#f87171;
 }
 
 .success{
 position:fixed;
-top:20px;
-right:20px;
-background:green;
+top:30px;
+right:30px;
+background:linear-gradient(135deg,#10b981,#059669);
 color:white;
-padding:12px 20px;
-border-radius:6px;
+padding:15px 25px;
+border-radius:12px;
+font-weight:600;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
 display:none;
+z-index:3000;
+animation:slideIn 0.4s ease forwards;
+}
+
+@keyframes slideIn{
+from{
+    opacity:0;
+    transform:translateX(100px);
+}
+to{
+    opacity:1;
+    transform:translateX(0);
+}
 }
 
 .category-slider{
@@ -397,13 +490,13 @@ display:none;
 
 <!-- HERO SLIDER -->
 <div class="hero">
-<div class="slide" style="background-image:url(https://i.pinimg.com/736x/50/5d/9a/505d9a1bf38c0af09f7b9ba9b7b716ef.jpg);">
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8');">
 <!-- <h1>Fashion Sale 50% OFF</h1> -->
 </div>
-<div class="slide" style="background-image:url('https://cdn.prod.website-files.com/605826c62e8de87de744596e/676384c5f1eae7a1e79ae8d3_67637f0be47077919bae0b79_screenshot-2024-12-18-at-72302-pm-6762d481479f6.webp');">
+<div class="slide" style="background-image:url('https://thumbs.dreamstime.com/z/banner-template-online-shopping-e-commerce-modern-flat-design-concept-web-page-design-mobile-website-banner-template-120919689.jpg');">
 <!-- <h1>Latest Electronics Collection</h1> -->
 </div>
-<div class="slide" style="background-image:url('https://cdn.prod.website-files.com/605826c62e8de87de744596e/676384c5f1eae7a1e79ae89a_676380aa66b1834956526367_screenshot-2024-12-18-at-72454-pm-6762d4958f5b6.webp');">
+<div class="slide" style="background-image:url('https://cdn2.f-cdn.com/contestentries/2334763/66857777/654fa3c9cf79c_thumb900.jpg');">
 <!-- <h1>Trendy Shirts & Pants</h1> -->
 </div>
 </div>
@@ -549,15 +642,19 @@ display:none;
 <p>© 2026 EliteShop | All Rights Reserved</p>
 </footer>
 
-<!-- ORDER POPUP -->
 <div class="popup" id="popup">
-<div class="popup-box">
-<h3>Place Order</h3>
-<input type="text" placeholder="Your Name">
-<input type="text" placeholder="Address">
-<input type="number" placeholder="Quantity">
-<button onclick="placeOrder()">Confirm Order</button>
-</div>
+  <div class="popup-box">
+
+    <!-- REAL CLOSE BUTTON -->
+    <span class="close-btn" onclick="closePopup()">✖</span>
+
+    <h3>Place Order</h3>
+    <input type="text" placeholder="Your Name" required>
+    <input type="text" placeholder="Address">
+    <input type="number" placeholder="Quantity">
+    <button onclick="placeOrder()">Confirm Order</button>
+
+  </div>
 </div>
 
 <div class="success" id="successMsg">
@@ -596,6 +693,10 @@ document.getElementById("popup").style.display="none";
 let s=document.getElementById("successMsg");
 s.style.display="block";
 setTimeout(()=>{s.style.display="none";},3000);
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
 }
 
 </script>
