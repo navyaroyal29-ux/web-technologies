@@ -1,77 +1,228 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Personal Website</title>
+    <meta charset="UTF-8">
+    <title>Navya Royal | Personal Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <!-- Internal CSS -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
         }
 
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar h2 {
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd369;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ================= CONTENT ================= */
+
         h1 {
-            color: rgb(194, 198, 192);
+            margin-top: 40px;
             text-align: center;
+            color: white;
+            font-size: 40px;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 900px;
+            margin: 40px auto;
         }
 
         section {
-            background-color: white;
-            padding: 15px;
-            margin: 20px;
-            border: 1px solid #ccc;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
         }
 
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: rgb(12, 148, 12);
-            font-weight: bold;
+        section:hover {
+            transform: translateY(-5px);
         }
+
+        h2 {
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            background: rgba(0,0,0,0.3);
+            width: 100%;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:768px){
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(0,0,0,0.8);
+                width: 200px;
+                padding: 20px;
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+                display: block;
+            }
+
+            .container{
+                width:95%;
+            }
+
+            h1{
+                font-size: 28px;
+            }
+        }
+
+        .show {
+            display: flex !important;
+        }
+
     </style>
 </head>
 
 <body>
 
-<!-- Inline CSS Example -->
-<h1 style="color: rgb(109, 0, 139);">My Personal Website</h1>
+<!-- ================= NAVBAR ================= -->
 
-<hr>
+<div class="navbar">
+<h2>
+  <a href="index.html" 
+     target="_blank" 
+     style="color:white; text-decoration:none;">
+     Web Technologies
+  </a>
+</h2>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 
-<section id="home">
-    <h2>Home</h2>
-    <p >
-        Welcome to my personal website. This website is created as part of my Web Technology lab exercise.
-    </p>
-</section>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="">About</a>
+        <a href="">Education</a>
+        <a href="">Contact</a>
+    </div>
+</div>
 
-<section id="about">
-    <h2>About Me</h2>
-    <p>My name is Navya Royal.</p>
-    <p>I am currently pursuing B.Tech, 2nd Year in Computer Science Engineering.</p>
-</section>
+<h1>My Personal Website</h1>
 
-<section id="education">
-    <h2>Education</h2>
-    <ul>
-        <li>School: Jain School</li>
-        <li>College: Jain University</li>
-        <li>Course: Bachelor of Technology (Computer Science Engineering)</li>
-    </ul>
-</section>
+<div class="container">
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email: navya@email.com</p>
-    <p>Phone: 9934567890</p>
-</section>
+    <section id="home">
+        <h2>Home</h2>
+        <p>
+            Welcome to my personal website. This website is created as part of my Web Technology lab exercise.
+        </p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>My name is Navya Royal.</p>
+        <p>I am currently pursuing B.Tech, 2nd Year in Computer Science Engineering.</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <ul>
+            <li><strong>School:</strong> Jain School</li>
+            <li><strong>College:</strong> Jain University</li>
+            <li><strong>Course:</strong> Bachelor of Technology (Computer Science Engineering)</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: navya@email.com</p>
+        <p>Phone: 9934567890</p>
+    </section>
+
+</div>
 
 <footer>
-    <p>© 2025 My Personal Website | Designed by Navya Royal</p>
+    © 2026 My Personal Website | Designed by Navya Royal
 </footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+function toggleMenu(){
+    document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>
