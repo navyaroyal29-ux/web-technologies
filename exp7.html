@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dataset - 20 Members</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+    text-align:center;
+}
+
+.container{
+    width:900px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    margin-top:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th, td{
+    border:1px solid black;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#4CAF50;
+    color:white;
+}
+
+button{
+    padding:8px 15px;
+    margin:5px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#45a049;
+}
+
+input{
+    padding:8px;
+    margin-top:10px;
+    width:200px;
+}
+
+#result{
+    margin-top:15px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Dataset - 20 Members</h2>
+
+<!-- Search box at the top -->
+<input type="text" id="searchName" placeholder="Enter student name">
+<button onclick="searchStudent()">Search</button>
+
+<!-- Table of students -->
+<table id="studentTable">
+<tr>
+<th>Name</th>
+<th>Marks</th>
+</tr>
+<tr><td>Rahul</td><td>78</td></tr>
+<tr><td>Anjali</td><td>85</td></tr>
+<tr><td>Kiran</td><td>92</td></tr>
+<tr><td>Sneha</td><td>88</td></tr>
+<tr><td>Arjun</td><td>75</td></tr>
+<tr><td>Priya</td><td>90</td></tr>
+<tr><td>Vikram</td><td>67</td></tr>
+<tr><td>Neha</td><td>81</td></tr>
+<tr><td>Aditya</td><td>77</td></tr>
+<tr><td>Sonal</td><td>95</td></tr>
+<tr><td>Riya</td><td>83</td></tr>
+<tr><td>Sameer</td><td>69</td></tr>
+<tr><td>Isha</td><td>87</td></tr>
+<tr><td>Manish</td><td>73</td></tr>
+<tr><td>Simran</td><td>91</td></tr>
+<tr><td>Deepak</td><td>80</td></tr>
+<tr><td>Payal</td><td>76</td></tr>
+<tr><td>Rohan</td><td>84</td></tr>
+<tr><td>Sakshi</td><td>89</td></tr>
+<tr><td>Harsh</td><td>70</td></tr>
+</table>
+
+<br>
+
+<!-- Operation buttons -->
+<button onclick="highestMarks()">Highest Marks</button>
+<button onclick="averageMarks()">Average Marks</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+// Student dataset (20 members)
+let students = [
+{name:"Rahul", marks:78},
+{name:"Anjali", marks:85},
+{name:"Kiran", marks:92},
+{name:"Sneha", marks:88},
+{name:"Arjun", marks:75},
+{name:"Priya", marks:90},
+{name:"Vikram", marks:67},
+{name:"Neha", marks:81},
+{name:"Aditya", marks:77},
+{name:"Sonal", marks:95},
+{name:"Riya", marks:83},
+{name:"Sameer", marks:69},
+{name:"Isha", marks:87},
+{name:"Manish", marks:73},
+{name:"Simran", marks:91},
+{name:"Deepak", marks:80},
+{name:"Payal", marks:76},
+{name:"Rohan", marks:84},
+{name:"Sakshi", marks:89},
+{name:"Harsh", marks:70}
+];
+
+// Search student
+function searchStudent(){
+    let name=document.getElementById("searchName").value.toLowerCase();
+    for(let i=0;i<students.length;i++){
+        if(students[i].name.toLowerCase()==name){
+            document.getElementById("result").innerHTML=
+            "Student Found: "+students[i].name+" - Marks: "+students[i].marks;
+            return;
+        }
+    }
+    document.getElementById("result").innerHTML="Student not found";
+}
+
+// Highest marks
+function highestMarks(){
+    let highest=students[0];
+    for(let i=1;i<students.length;i++){
+        if(students[i].marks > highest.marks){
+            highest=students[i];
+        }
+    }
+    document.getElementById("result").innerHTML=
+    "Highest Marks: "+highest.name+" - "+highest.marks;
+}
+
+// Average marks
+function averageMarks(){
+    let sum=0;
+    for(let i=0;i<students.length;i++){
+        sum=sum+students[i].marks;
+    }
+    let avg=sum/students.length;
+    document.getElementById("result").innerHTML=
+    "Average Marks: "+avg.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
