@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register & Login Validation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .link {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .link span {
+            color: blue;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: left;
+            margin-top: 2px;
+            margin-bottom: 5px;
+        }
+
+        .error-input {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2 id="title">Register</h2>
+
+    <!-- REGISTER -->
+    <div id="registerBox">
+
+        <input type="text" id="regName" placeholder="Full Name">
+        <div class="error" id="regNameErr"></div>
+
+        <input type="email" id="regEmail" placeholder="Email">
+        <div class="error" id="regEmailErr"></div>
+
+        <input type="password" id="regPass" placeholder="Password">
+        <div class="error" id="regPassErr"></div>
+
+        <input type="password" id="regCpass" placeholder="Confirm Password">
+        <div class="error" id="regCpassErr"></div>
+
+        <button onclick="registerUser()">Register</button>
+
+        <div class="link">
+            Already have an account? <span onclick="showLogin()">Login</span>
+        </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginBox" style="display:none;">
+
+        <input type="email" id="loginEmail" placeholder="Email">
+        <div class="error" id="loginEmailErr"></div>
+
+        <input type="password" id="loginPass" placeholder="Password">
+        <div class="error" id="loginPassErr"></div>
+
+        <button onclick="loginUser()">Login</button>
+
+        <div class="link">
+            Don't have an account? <span onclick="showRegister()">Register</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+function showLogin() {
+    document.getElementById("registerBox").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+    clearErrors();
+}
+
+function showRegister() {
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("registerBox").style.display = "block";
+    clearErrors();
+}
+
+// CLEAR ERRORS
+function clearErrors() {
+    let errors = document.querySelectorAll(".error");
+    errors.forEach(e => e.innerText = "");
+
+    let inputs = document.querySelectorAll("input");
+    inputs.forEach(i => i.classList.remove("error-input"));
+}
+
+// REGISTER VALIDATION
+function registerUser() {
+
+    clearErrors();
+
+    let name = document.getElementById("regName");
+    let email = document.getElementById("regEmail");
+    let pass = document.getElementById("regPass");
+    let cpass = document.getElementById("regCpass");
+
+    let valid = true;
+
+    if (name.value === "") {
+        document.getElementById("regNameErr").innerText = "Name is required";
+        name.classList.add("error-input");
+        valid = false;
+    }
+
+    if (email.value === "") {
+        document.getElementById("regEmailErr").innerText = "Email is required";
+        email.classList.add("error-input");
+        valid = false;
+    }
+
+    if (pass.value === "") {
+        document.getElementById("regPassErr").innerText = "Password is required";
+        pass.classList.add("error-input");
+        valid = false;
+    } else if (pass.value.length < 6) {
+        document.getElementById("regPassErr").innerText = "Min 6 characters required";
+        pass.classList.add("error-input");
+        valid = false;
+    }
+
+    if (cpass.value === "") {
+        document.getElementById("regCpassErr").innerText = "Confirm password required";
+        cpass.classList.add("error-input");
+        valid = false;
+    } else if (cpass.value !== pass.value) {
+        document.getElementById("regCpassErr").innerText = "Passwords do not match";
+        cpass.classList.add("error-input");
+        valid = false;
+    }
+
+    if (valid) {
+        localStorage.setItem("email", email.value);
+        localStorage.setItem("password", pass.value);
+        alert("Registration Successful!");
+        showLogin();
+    }
+}
+
+// LOGIN VALIDATION
+function loginUser() {
+
+    clearErrors();
+
+    let email = document.getElementById("loginEmail");
+    let pass = document.getElementById("loginPass");
+
+    let storedEmail = localStorage.getItem("email");
+    let storedPass = localStorage.getItem("password");
+
+    let valid = true;
+
+    if (email.value === "") {
+        document.getElementById("loginEmailErr").innerText = "Email is required";
+        email.classList.add("error-input");
+        valid = false;
+    }
+
+    if (pass.value === "") {
+        document.getElementById("loginPassErr").innerText = "Password is required";
+        pass.classList.add("error-input");
+        valid = false;
+    }
+
+    if (valid) {
+        if (email.value === storedEmail && pass.value === storedPass) {
+            alert("Login Successful!");
+        } else {
+            document.getElementById("loginPassErr").innerText = "Invalid credentials";
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>
