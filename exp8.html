@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Event Handling Project</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #940000;
+            text-align: center;
+        }
+        .container {
+            width: 350px;
+            margin: auto;
+            background: rgb(89, 80, 80);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 8px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #strength {
+            font-weight: bold;
+        }
+        .weak { color: red; }
+        .medium { color: orange; }
+        .strong { color: green; }
+        #output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>🔥 Advanced Event Handling</h2>
+
+    <!-- Exercise 1 -->
+    <h3>Event Mechanisms</h3>
+
+    <button onclick="inlineEvent()">Inline</button>
+    <button id="traditionalBtn">Traditional</button>
+    <button id="listenerBtn">Listener</button>
+
+    <p id="output"></p>
+
+    <hr>
+
+    <!-- Exercise 2 -->
+    <h3>Smart Registration Form</h3>
+
+    <form id="form">
+
+        <input type="text" id="name" placeholder="Enter Name"><br>
+
+        <input type="email" id="email" placeholder="Enter Email"><br>
+
+        <input type="password" id="password" placeholder="Enter Password">
+        <button type="button" id="togglePass">Show</button>
+
+        <p id="strength"></p>
+
+        <select id="gender">
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p id="msg"></p>
+
+</div>
+
+<script>
+    // ===== Exercise 1 (Advanced) =====
+    const output = document.getElementById("output");
+
+    function inlineEvent() {
+        output.innerHTML = "✅ Inline Event Triggered";
+    }
+
+    document.getElementById("traditionalBtn").onclick = function() {
+        output.innerHTML = "✅ Traditional Event Triggered";
+    };
+
+    document.getElementById("listenerBtn").addEventListener("click", function() {
+        output.innerHTML = "✅ addEventListener Triggered";
+    });
+
+    // ===== Exercise 2 (Advanced Form) =====
+    const msg = document.getElementById("msg");
+    const strength = document.getElementById("strength");
+
+    // Real-time name input
+    document.getElementById("name").addEventListener("input", function() {
+        msg.innerHTML = "Typing Name: " + this.value;
+    });
+
+    // Password strength checker
+    document.getElementById("password").addEventListener("input", function() {
+        let val = this.value;
+
+        if (val.length < 4) {
+            strength.innerHTML = "Weak";
+            strength.className = "weak";
+        } else if (val.length < 8) {
+            strength.innerHTML = "Medium";
+            strength.className = "medium";
+        } else {
+            strength.innerHTML = "Strong";
+            strength.className = "strong";
+        }
+    });
+
+    // Show/Hide Password
+    document.getElementById("togglePass").addEventListener("click", function() {
+        let pass = document.getElementById("password");
+
+        if (pass.type === "password") {
+            pass.type = "text";
+            this.innerHTML = "Hide";
+        } else {
+            pass.type = "password";
+            this.innerHTML = "Show";
+        }
+    });
+
+    // Gender change event
+    document.getElementById("gender").addEventListener("change", function() {
+        msg.innerHTML = "Selected: " + this.value;
+    });
+
+    // Form submit
+    document.getElementById("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+
+        if (name === "" || email === "" || password === "") {
+            msg.style.color = "red";
+            msg.innerHTML = "❌ Fill all fields!";
+            return;
+        }
+
+        msg.style.color = "green";
+        msg.innerHTML = "🎉 Registration Successful!";
+    });
+</script>
+
+</body>
+</html>
