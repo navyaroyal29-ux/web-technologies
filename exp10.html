@@ -2,10 +2,86 @@
 <html>
 <head>
     <title>Welcome Page</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* ✅ 2 cards per row */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 90%;
+            margin: 40px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .card img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 📱 Mobile view */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Welcome Experiment 10</h1>
+   <h1>Product Management System - CRUD Operations</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Product Dashboard</h3>
+            <img src="img/Dashboard.png" alt="Product Creation">
+        </div>
+
+        <div class="card">
+            <h3>Creation Product</h3>
+            <img src="img/creation.png" alt="CRUD">
+        </div>
+
+        <div class="card">
+            <h3>Product List</h3>
+            <img src="img/product-list.png" alt="Login">
+        </div>
+
+        <div class="card">
+            <h3>Product Update</h3>
+            <img src="img/update.png" alt="Register">
+        </div>
+
+    </div>
 
 </body>
 </html>
